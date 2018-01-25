@@ -29,8 +29,7 @@ namespace PFSign.Controllers
             DateTime endTime = end ?? DateTime.UtcNow;
             DateTime beginTime = begin ?? endTime.AddDays(-1);
             return await (from r in _context.Records
-                          where r.SignOutTime == null
-                          && r.SignInTime >= beginTime
+                          where r.SignInTime >= beginTime
                           && r.SignInTime <= endTime
                           select new
                           {
