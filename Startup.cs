@@ -25,8 +25,11 @@ namespace PFSign
         public void ConfigureServices(IServiceCollection services)
         {
             // 务必在AddMvc之前添加
+            // services.AddDbContext<RecordDbContext>(options
+            //         => options.UseSqlServer(Configuration.GetConnectionString("Local")));
+            // 由于部分人没有装SQL Server，这里改用sqlite
             services.AddDbContext<RecordDbContext>(options
-                    => options.UseSqlServer(Configuration.GetConnectionString("Local")));
+                    => options.UseSqlite("Data Source=Data.db"));
             services.AddMvc();
         }
 
